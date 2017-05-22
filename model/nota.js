@@ -18,7 +18,7 @@ const NotaSchema = mongoose.Schema({
 const Nota = module.exports = mongoose.model('Nota',NotaSchema);
 
 module.exports.getAll = function(callback){
-    Nota.find(callback);
+    Nota.find(callback).sort({mes: 'asc'});
 }
 
 module.exports.getNotasDoAluno = function(aluno_id,callback){

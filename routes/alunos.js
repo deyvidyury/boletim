@@ -42,14 +42,11 @@ router.post('/aluno',function(req,res,next){
         nome: req.body.nome
     });
 
-    console.log(novoAluno);
-
     Aluno.addAluno(novoAluno, (err,aluno) => {
         if(err){
             res.json(err);
             //res.json({success: false, msg:"Nao pode salvar estudante"});
         } else {
-            aluno.nota = [];
             for(var i=1;i<=8;i++){
                 var nota = new Nota({
                     aluno_id: aluno._id,
@@ -59,10 +56,11 @@ router.post('/aluno',function(req,res,next){
                     if(_err) {
                         res.json(_err);
                     } else {
-                        aluno.nota.push(nota)
+                        // aluno.notas.push(nota)
                     }
                 });
             }
+            
             res.json(aluno);
         }
     })
