@@ -35,34 +35,34 @@ router.get('/alunos',function(req,res,next){
 //     })
 // })
 
-// // Save estudante
-// router.post('/estudante',function(req,res,next){
-//     let novoEstudante = new Estudante({
-//         name: req.body.name
-//     });
+// Inclui aluno
+router.post('/aluno',function(req,res,next){
+    let novoAluno = new Aluno({
+        nome: req.body.nome
+    });
 
-//     // console.log(req.body);
+    console.log(novoAluno);
 
-//     Estudante.addEstudante(novoEstudante, (err,estudante) => {
-//         if(err){
-//             res.json(err);
-//             //res.json({success: false, msg:"Nao pode salvar estudante"});
-//         } else {
-//             res.json(estudante);
-//             //res.json({success: true, msg:"Estudante cadastrado"});
-//             // Criar quatro notas para o aluno
-//             for(var i=1;i<=4;i++){
-//                 var nota = new Nota({
-//                     std_id: estudante._id,
-//                     mes: i
-//                 });
-//                 Nota.addNotaPorMes(nota);
-//             }
-//         }
-//     })
+    Aluno.addAluno(novoAluno, (err,aluno) => {
+        if(err){
+            res.json(err);
+            //res.json({success: false, msg:"Nao pode salvar estudante"});
+        } else {
+            res.json(aluno);
+            // //res.json({success: true, msg:"Estudante cadastrado"});
+            // // Criar quatro notas para o aluno
+            // for(var i=1;i<=4;i++){
+            //     var nota = new Nota({
+            //         std_id: estudante._id,
+            //         mes: i
+            //     });
+            //     Nota.addNotaPorMes(nota);
+            // }
+        }
+    })
 
 
-// })
+})
 
 // // Atualiza estudante
 // router.put('/estudante',function(req,res,next){

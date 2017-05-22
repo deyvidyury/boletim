@@ -8,7 +8,7 @@ const AlunoSchema = mongoose.Schema({
 	}
 });
 
-const Alunos = module.exports = mongoose.model('Aluno',AlunoSchema);
+const Alunos = module.exports = mongoose.model('Alunos',AlunoSchema);
 
 module.exports.getTodosAlunos = function(callback){
 	Alunos.find(callback);
@@ -22,9 +22,9 @@ module.exports.getTodosAlunos = function(callback){
 // 	Alunos.findOne({nome: nome}, callback);
 // }
 
-// module.exports.addAluno = function (novoAluno, callback){
-// 	novoALuno.save(callback);
-// }
+module.exports.addAluno = function (novoAluno, callback){
+	novoAluno.save(callback);
+}
 
 // module.exports.updateAluno = function(novoAluno, callback){
 // 	const query = {_id: novoAluno._id}
