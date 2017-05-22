@@ -34,3 +34,7 @@ module.exports.updateAluno = function(novoAluno, callback){
 module.exports.removeAluno = function(id,callback){
     Alunos.remove(id,callback);
 }
+
+module.exports.removeAll = function(callback){
+	Alunos.remove({},callback);
+}

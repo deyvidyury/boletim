@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const config = require('../config/database');
 const Aluno = require('../model/aluno');
+const Nota = require('../model/nota');
 
 // Get para todos os estudantes
 router.get('/alunos',function(req,res,next){
@@ -48,16 +49,21 @@ router.post('/aluno',function(req,res,next){
             res.json(err);
             //res.json({success: false, msg:"Nao pode salvar estudante"});
         } else {
+            aluno.nota = [];
+            for(var i=1;i<=8;i++){
+                var nota = new Nota({
+                    aluno_id: aluno._id,
+                    mes: i
+                });
+                Nota.addNotaPorMes(nota, (_err,nota) => {
+                    if(_err) {
+                        res.json(_err);
+                    } else {
+                        aluno.nota.push(nota)
+                    }
+                });
+            }
             res.json(aluno);
-            // //res.json({success: true, msg:"Estudante cadastrado"});
-            // // Criar quatro notas para o aluno
-            // for(var i=1;i<=4;i++){
-            //     var nota = new Nota({
-            //         std_id: estudante._id,
-            //         mes: i
-            //     });
-            //     Nota.addNotaPorMes(nota);
-            // }
         }
     })
 
@@ -104,6 +110,17 @@ router.delete('/aluno/:id',function(req,res,next){
             //Nota.removeNotas({std_id: req.params.id});
         }
 
+    })
+})
+
+// Remove todos os alunos
+router.delete('/alunos',function(req,res,next){
+    Aluno.removeAll((err,aluno) =>{
+        if(err){
+            res.send(err);
+        } else {
+            res.json({'status':'Collection Alunos cleared'});
+        }
     })
 })
 

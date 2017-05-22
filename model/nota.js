@@ -17,6 +17,10 @@ const NotaSchema = mongoose.Schema({
 
 const Nota = module.exports = mongoose.model('Nota',NotaSchema);
 
+module.exports.getAll = function(callback){
+    Nota.find(callback);
+}
+
 module.exports.getNotasDoAluno = function(aluno_id,callback){
     Nota.find(aluno_id,callback);
 }
@@ -38,4 +42,8 @@ module.exports.updateNota = function(uptNota,callback){
 
 module.exports.removeNotas = function(aluno_id,callback){
     Nota.remove(aluno_id,callback);
+}
+
+module.exports.removeAll = function(callback){
+    Nota.remove({},callback);
 }

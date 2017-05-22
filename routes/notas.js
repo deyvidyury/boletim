@@ -4,6 +4,17 @@ const router = express.Router();
 const config = require('../config/database');
 const Nota = require('../model/nota');
 
+// Todas as notas
+router.get('/notas',function(req,res,next){
+    Nota.getAll((err,notas) => {
+        if(err){
+            res.json(err);
+        } else {
+            res.json(notas);
+        }
+    })
+})
+
 // Notas do estudante
 router.get('/notas/:aluno_id',function(req,res,next){
     Nota.getNotasDoAluno({aluno_id: req.params.aluno_id},(err,notas) => {
@@ -65,6 +76,16 @@ router.delete('/notas/:aluno_id',function(req,res,next){
             res.send(err);
         }
         res.json(nota);
+    })
+})
+
+router.delete('/notas', function(req,res,next){
+    Nota.removeAll((err) => {
+        if(err){
+            res.send(err);
+        } else {
+            res.json({'status':'Collection Notas cleared'})
+        }
     })
 })
 
