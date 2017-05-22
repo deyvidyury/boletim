@@ -75,7 +75,7 @@ router.delete('/notas/:aluno_id',function(req,res,next){
         if(err){
             res.send(err);
         }
-        res.json(nota);
+        res.json({'status':'Nota removida'});
     })
 })
 

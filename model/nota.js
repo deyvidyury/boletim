@@ -4,7 +4,7 @@ const config = require('../config/database');
 // Schema Nota
 const NotaSchema = mongoose.Schema({
     aluno_id: {
-        type: mongoose.Schema.Types.ObjectId
+        type: String
     },
     value: {
         type: Number,

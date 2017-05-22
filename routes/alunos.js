@@ -42,30 +42,34 @@ router.post('/aluno',function(req,res,next){
         nome: req.body.nome
     });
 
+    // Criar notas
+    let notas = [];
+    for(var i=1;i<=8;i++){
+        var nota = new Nota({
+            aluno_id: novoAluno._id,
+            mes: i
+        });
+        notas.push(nota._id);
+        Nota.addNotaPorMes(nota, (_err,nota) => {
+            if(_err) {
+                res.json(_err);
+            } else {
+                // aluno.notas.push(nota)
+            }
+        });
+    }
+
+    // Incluir ids das notas em novoAluno
+    novoAluno.notas = notas;
+
+    // salvar aluno
     Aluno.addAluno(novoAluno, (err,aluno) => {
         if(err){
             res.json(err);
-            //res.json({success: false, msg:"Nao pode salvar estudante"});
         } else {
-            for(var i=1;i<=8;i++){
-                var nota = new Nota({
-                    aluno_id: aluno._id,
-                    mes: i
-                });
-                Nota.addNotaPorMes(nota, (_err,nota) => {
-                    if(_err) {
-                        res.json(_err);
-                    } else {
-                        // aluno.notas.push(nota)
-                    }
-                });
-            }
-            
             res.json(aluno);
         }
     })
-
-
 })
 
 // Atualiza aluno
@@ -105,7 +109,7 @@ router.delete('/aluno/:id',function(req,res,next){
         } else {
             res.json({'status':'Aluno removido'});
             // deletar notas do estudante
-            //Nota.removeNotas({std_id: req.params.id});
+            Nota.removeNotas({aluno_id: req.params.id});
         }
 
     })
