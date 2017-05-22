@@ -99,7 +99,7 @@ router.delete('/aluno/:id',function(req,res,next){
         if(err) {
             res.send(err);
         } else {
-            res.json(aluno);
+            res.json({'status':'Aluno removido'});
             // deletar notas do estudante
             //Nota.removeNotas({std_id: req.params.id});
         }
