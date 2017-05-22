@@ -14,9 +14,9 @@ module.exports.getTodosAlunos = function(callback){
 	Alunos.find(callback);
 }
 
-// module.exports.getAlunoById = function(id,callback){
-// 	Alunos.findById(id,callback);
-// }
+module.exports.getAlunoById = function(id,callback){
+	Alunos.findById(id,callback);
+}
 
 // module.export.getAlunoByName = function(nome, callback){
 // 	Alunos.findOne({nome: nome}, callback);

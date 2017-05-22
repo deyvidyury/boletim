@@ -14,15 +14,15 @@ router.get('/alunos',function(req,res,next){
     });
 });
 
-// Get estudante por id
-// router.get('/estudante/:id',function(req,res,next){
-//     Estudante.getEstudanteById({_id: req.params.id},(err,estudante)=>{
-//         if(err){
-//             res.send(err);
-//         }
-//         res.json(estudante);
-//     })
-// })
+//Get aluno por id
+router.get('/aluno/:id',function(req,res,next){
+    Aluno.getAlunoById({_id: req.params.id},(err,aluno)=>{
+        if(err){
+            res.send(err);
+        }
+        res.json(aluno);
+    })
+})
 
 // // ! Not working
 // // Get estudante por nome
