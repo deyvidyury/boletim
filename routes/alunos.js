@@ -64,46 +64,47 @@ router.post('/aluno',function(req,res,next){
 
 })
 
-// // Atualiza estudante
-// router.put('/estudante',function(req,res,next){
-//     const estudante = req.body;
-//     let uptEstudante = {};
+// Atualiza aluno
+router.put('/aluno',function(req,res,next){
+    const id = req.params.id;
+    const aluno = req.body;
+    let uptAluno = {};
 
-//     if(estudante.name){
-//         uptEstudante = req.body;
-//     }
+    if(aluno.nome){
+        uptAluno = req.body;
+    }
 
-//     console.log(uptEstudante);
+    console.log(uptAluno);
 
-//     Estudante.updateEstudante(uptEstudante,(err,_estudante) => {
-//         if(err){
-//             res.send(err);
-//         }
-//         res.json(_estudante);
-//     })
+    Aluno.updateAluno(uptAluno,(err,_aluno) => {
+        if(err){
+            res.send(err);
+        }
+        res.json(_aluno);
+    })
 
-//     // if(!uptEstudante){
-//     //     res.status(400);
-//     //     res.json({"error":"Bad data"});
-//     // } else {
-//     //     Estudante.updateEstudante(uptEstudante,(err,estudante) => {
-//     //         if(err) throw err;
-//     //         res.json(estudante);
-//     //     })
-//     // }
-// })
+    // if(!uptEstudante){
+    //     res.status(400);
+    //     res.json({"error":"Bad data"});
+    // } else {
+    //     Estudante.updateEstudante(uptEstudante,(err,estudante) => {
+    //         if(err) throw err;
+    //         res.json(estudante);
+    //     })
+    // }
+})
 
-// router.delete('/estudante/:id',function(req,res,next){
-//     Estudante.removeEstudante({_id: req.params.id},(err,estudante) => {
-//         if(err) {
-//             res.send(err);
-//         } else {
-//             res.json(estudante);
-//             // deletar notas do estudante
-//             Nota.removeNotas({std_id: req.params.id});
-//         }
+router.delete('/aluno/:id',function(req,res,next){
+    Aluno.removeAluno({_id: req.params.id},(err,aluno) => {
+        if(err) {
+            res.send(err);
+        } else {
+            res.json(aluno);
+            // deletar notas do estudante
+            //Nota.removeNotas({std_id: req.params.id});
+        }
 
-//     })
-// })
+    })
+})
 
 module.exports = router;

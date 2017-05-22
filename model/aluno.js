@@ -26,11 +26,11 @@ module.exports.addAluno = function (novoAluno, callback){
 	novoAluno.save(callback);
 }
 
-// module.exports.updateAluno = function(novoAluno, callback){
-// 	const query = {_id: novoAluno._id}
-//     Alunos.findOneAndUpdate(query,{nome: novoEstudante.nome},callback);
-// }
+module.exports.updateAluno = function(novoAluno, callback){
+	const query = {_id: novoAluno.id}
+    Alunos.findOneAndUpdate(query,{nome: novoAluno.nome},callback);
+}
 
-// module.exports.removeAluno = function(id,callback){
-//     Alunos.remove(id,callback);
-// }
+module.exports.removeAluno = function(id,callback){
+    Alunos.remove(id,callback);
+}
