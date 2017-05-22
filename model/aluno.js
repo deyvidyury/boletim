@@ -18,9 +18,9 @@ module.exports.getAlunoById = function(id,callback){
 	Alunos.findById(id,callback);
 }
 
-// module.export.getAlunoByName = function(nome, callback){
-// 	Alunos.findOne({nome: nome}, callback);
-// }
+module.exports.getAlunoByName = function(_nome, callback){
+	Alunos.find({nome: new RegExp(_nome,'ig')}, callback);
+}
 
 module.exports.addAluno = function (novoAluno, callback){
 	novoAluno.save(callback);

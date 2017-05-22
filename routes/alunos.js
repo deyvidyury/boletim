@@ -24,16 +24,16 @@ router.get('/aluno/:id',function(req,res,next){
     })
 })
 
-// // ! Not working
-// // Get estudante por nome
-// router.post('/estudante/nome',function(req,res,next){
-//     Estudante.getEstudanteByName({name: req.body.name},(err,estudante)=>{
-//         if(err){
-//             res.send(err);
-//         }
-//         res.json(estudante);
-//     })
-// })
+// Get aluno por nome
+router.get('/aluno',function(req,res,next){
+    var nome = req.query.nome
+    Aluno.getAlunoByName({nome: nome},(err,aluno)=>{
+        if(err){
+            res.send(err);
+        }
+        res.json(aluno);
+    })
+})
 
 // Inclui aluno
 router.post('/aluno',function(req,res,next){
