@@ -23,6 +23,7 @@ mongoose.connection.on('error',(err)=>{
 const app = express();
 
 const alunos = require('./routes/alunos');
+const notas = require('./routes/notas');
 
 const port = process.env.PORT || 8080;
 
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.json());
 
 app.use('/api',alunos);
+app.use('/api',notas);
 
 app.use('/',(req,res) => {
     res.send('Invalid endpoint');
